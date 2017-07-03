@@ -26,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.sunshine.data.SunshinePreferences;
 import com.example.android.sunshine.utilities.NetworkUtils;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private ForecastAdapter mForecastAdapter;
 
     private TextView mErrorMessageDisplay;
+    private Toast mToast;
 
     private ProgressBar mLoadingIndicator;
 

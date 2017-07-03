@@ -15,6 +15,7 @@
  */
 package com.example.android.sunshine;
 
+import android.app.LauncherActivity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,14 +30,21 @@ import android.widget.TextView;
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapterViewHolder> {
 
     private String[] mWeatherData;
-
+    private int mNumberItems;
     // TODO (3) Create a final private ForecastAdapterOnClickHandler called mClickHandler
-
+    final private ForecastAdapterOnClickHandler mClickHandler;
     // TODO (1) Add an interface called ForecastAdapterOnClickHandler
+    public interface ForecastAdapterOnClickHandler{
+        void onListItemClick(String clickedItemIndex);
+
+    }
     // TODO (2) Within that interface, define a void method that access a String as a parameter
 
     // TODO (4) Add a ForecastAdapterOnClickHandler as a parameter to the constructor and store it in mClickHandler
-    public ForecastAdapter() {
+    public ForecastAdapter(int numberOfItems, ForecastAdapterOnClickHandler listener) {
+        mNumberItems = numberOfItems;
+        mClickHandler = listener;
+        int viewHolderCount = 0;
 
     }
 
@@ -44,17 +52,24 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     /**
      * Cache of the children views for a forecast list item.
      */
-    public class ForecastAdapterViewHolder extends RecyclerView.ViewHolder {
+    public class ForecastAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public final TextView mWeatherTextView;
 
         public ForecastAdapterViewHolder(View view) {
             super(view);
             mWeatherTextView = (TextView) view.findViewById(R.id.tv_weather_data);
+            itemView.setOnClickListener(this);
             // TODO (7) Call setOnClickListener on the view passed into the constructor (use 'this' as the OnClickListener)
         }
 
         // TODO (6) Override onClick, passing the clicked day's data to mClickHandler via its onClick method
+        @Override
+        public void OnClick(View view){
+            int clickedPosition = getAdapterPosition();
+            mClickHandler.onListItemClick();
+        }
     }
+
 
     /**
      * This gets called when each new ViewHolder is created. This happens when the RecyclerView

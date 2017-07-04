@@ -145,17 +145,17 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public Loader<String> onCreateLoader(int id, final Bundle args) {
         return new AsyncTaskLoader<String>(this) {
-            protected void onStartLoading(){
+            protected void onStartLoading() {
                 super.onStartLoading();
-                if(args==null){
-                    return ;
+                if (args == null) {
+                    return;
                 }
                 mLoadingIndicator.setVisibility(View.VISIBLE);
             }
+
             @Override
             public String loadInBackground() {
                 String searchQueryUrlString = args.getString(SEARCH_QUERY_URL_EXTRA);
-                if(searchQueryUrlString == null || TextUtils.isEmpty(searchQueryUrlString)){
                     return null;
                 }
                 try {

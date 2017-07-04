@@ -49,6 +49,17 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onClickOpenAddressButton(View v) {
         // TODO (5) Store an address in a String
+        String addressString = "1600 Amphitheatre Parkway, CA";
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("geo").path("0,0").query(addressString);
+        Uri addressUri = builder.build();
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(addressUri);
+
+        if(intent.resolveActivity(getPackageManager()) != null){
+            startActivity(intent);
+        }
 
         // TODO (6) Use Uri.Builder with the appropriate scheme and query to form the Uri for the address
 
@@ -113,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // TODO (1) Create a method called showMap with a Uri as the single parameter
+
     // Do steps 2 - 4 within the showMap method
         // TODO (2) Create an Intent with action type, Intent.ACTION_VIEW
 

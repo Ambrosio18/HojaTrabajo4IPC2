@@ -156,6 +156,7 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public String loadInBackground() {
                 String searchQueryUrlString = args.getString(SEARCH_QUERY_URL_EXTRA);
+                if (searchQueryUrlString == null || TextUtils.isEmpty(searchQueryUrlString)) {
                     return null;
                 }
                 try {
